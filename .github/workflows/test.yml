@@ -7,20 +7,21 @@ on:
 jobs:
   test_node:
     runs-on: ubuntu-latest
-    container: node:10.18-jessie # Run in a container, so that we can attach services https://docs.github.com/en/actions/guides/creating-postgresql-service-containers
     services:
       postgres:
-        image: postgres
+        image: postgres:13.2
         env:
+          DB_HOST: localhost
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-    strategy:
-      matrix:
-        node-version: [16.x]
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v2 # The /actions path contains predefined actions. We are using https://github.com/actions/checkout
       - name: Use Node.js ${{ matrix.node-version }}
@@ -49,7 +50,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: kingofcramers/fullstack-template
+          images: kingofcramers/geobug
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
