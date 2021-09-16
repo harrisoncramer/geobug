@@ -1,7 +1,3 @@
--- Drop old tables
-DROP TABLE bug;
-DROP TABLE users;
-DROP TABLE team;
 -- Setup new tables
 CREATE TABLE team (
   id SERIAL PRIMARY KEY,

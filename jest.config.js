@@ -12,7 +12,7 @@ process.env = {
   ...process.env,
   PGHOST: '127.0.0.1',
   PGPORT: '5432',
-  PGDATABASE: 'geobug_test',
-  PGUSER: 'harrisoncramer',
+  PGDATABASE: 'postgres',
+  PGUSER: 'postgres',
   PGPASSWORD: 'postgres',
 };

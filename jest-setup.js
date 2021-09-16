@@ -27,5 +27,13 @@ global.beforeAll(async () => {
 });
 
 global.afterAll(async () => {
+  const teardown = fs.readFileSync(
+    path.resolve(__dirname, 'server', '__tests__', 'helpers', 'teardown.sql'),
+    {
+      encoding: 'utf8',
+    }
+  );
+
+  await global.pool.query(teardown);
   await global.pool.end();
 });
