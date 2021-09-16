@@ -7,7 +7,6 @@ on:
 jobs:
   test_node:
     runs-on: ubuntu-latest
-    container: node:10.18-jessie # Run in a container, so that we can attach services https://docs.github.com/en/actions/guides/creating-postgresql-service-containers
     services:
       postgres:
         image: postgres:13.2
