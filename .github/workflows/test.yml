@@ -10,9 +10,11 @@ jobs:
     container: node:10.18-jessie # Run in a container, so that we can attach services https://docs.github.com/en/actions/guides/creating-postgresql-service-containers
     services:
       postgres:
-        image: postgres
+        image: postgres:13.2
         env:
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
